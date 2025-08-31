@@ -105,10 +105,3 @@ FROM salaries
 ORDER BY salary DESC
 LIMIT 3;
 
-Learnings from Day 2
-
-Practiced multiple methods to solve the same Python problem.
-
-Understood formula-driven logic for missing numbers.
-
-Strengthened loop and string handling.
