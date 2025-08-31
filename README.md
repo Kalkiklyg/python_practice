@@ -104,4 +104,70 @@ SELECT emp_id, salary
 FROM salaries
 ORDER BY salary DESC
 LIMIT 3;
+-------------------------------------------------------------------------------------
+#_DAY 3_#
 
+##PYTHON##
+
+---Check if a number is an Armstrong number.---  
+
+num = int(input("Enter a number: "))
+str_n = str(num)
+order = len(str_n)
+sop = 0
+for digit in str_n:
+    sop += int(digit) ** order
+
+if sop == num:
+    print(num, "is an Armstrong number.")
+else:
+    print(num, "is not an Armstrong number.")
+
+---Check if a number is prime.---
+
+num = int(input("Enter a number: "))
+is_prime = True
+for i in range(2, num):
+    if num % i == 0:
+        is_prime = False
+        break
+
+if is_prime and num > 1:
+    print(num, "is a prime number.")
+else:
+    print(num, "is not a prime number.")
+
+---Find the longest word in a given string.---
+
+s = input("Enter a sentence: ")
+words = s.split()
+h = ""
+for i in words:
+    if len(i) > len(h):
+        h = i
+print("Longest word is:", h)
+
+###SQL Queries###
+
+---Employees with salary above average in their department---
+
+SELECT e.name, e.dept_id, s.salary
+FROM emply e
+JOIN slres s ON e.emp_id = s.emp_id
+WHERE s.salary > (
+    SELECT AVG(s2.salary)
+    FROM slres s2
+    WHERE s2.dept_id = e.dept_id
+);
+
+---Second Highest Salary (without LIMIT)---
+SELECT MAX(salary) 
+FROM slres
+WHERE salary < (SELECT MAX(salary) FROM slres);
+
+---Count Employees per Department---
+SELECT dept_id, COUNT(*) AS employee_count
+FROM emply
+GROUP BY dept_id;
+
+----------------------------------------------------------------------------------------------------------------
