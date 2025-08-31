@@ -6,16 +6,6 @@ The goal: Develop **problem-solving skills** first, then refine coding ability t
 
 ---
 
-## 📌 Day 1 – Problem Statements  
-
-### 1️⃣ Find the 2nd Largest Number in a List  
-**Problem:** Write a function that takes a list of numbers and returns the 2nd largest number.  
-
-**Key Learning:**  
-- Think logically first → Sort list, remove duplicates, pick the second last.  
-- Use Python’s built-in tools like `set()`, `sort()`.  
-- Communicating logic to Python is as important as solving it.  
-
 **Code:**
 ```python
 def second_largest(nums):
