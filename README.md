@@ -53,3 +53,54 @@ def unique_elements(lst):
 
 print(unique_elements([1, 2, 2, 3, 4, 4, 5]))
 
+Day 2 – Problem Solving (Python + SQL)
+# slicing
+given_string = "example"
+rev_0 = given_string[::-1]
+print("Reversed string using slicing method:", rev_0)
+
+# join + reversed
+rev_1 = "".join(reversed(given_string))
+print("Reversed string using join + reversed method:", rev_1)
+
+# for loop
+rev_2 = ""
+for char in given_string:
+    rev_2 = char + rev_2
+print("Reversed string using loop:", rev_2)
+
+l = [8, 2, 4, 5, 3, 7, 1]
+n = len(l) + 1
+Total_expected = n * (n + 1) / 2
+Total_actual = sum(l)
+missing_number = Total_expected - Total_actual
+print("The missing number from the list is:", missing_number)
+
+digi = 112
+d = 0
+for i in str(digi):
+    d += int(i)
+print("Sum of digits:", d)
+
+SELECT e.emp_id, AVG(s.salary)
+FROM employees e 
+JOIN salaries s ON e.emp_id = s.emp_id
+GROUP BY e.emp_id
+HAVING AVG(s.salary) >= (SELECT AVG(salary) FROM salaries);
+
+SELECT emp_id, dept_id
+FROM employees
+WHERE dept_id IS NULL;
+
+SELECT emp_id, salary
+FROM salaries
+ORDER BY salary DESC
+LIMIT 3;
+
+Learnings from Day 2
+
+Practiced multiple methods to solve the same Python problem.
+
+Understood formula-driven logic for missing numbers.
+
+Strengthened loop and string handling.
