@@ -1,4 +1,4 @@
-# 🚀 Python Problem-Solving Practice  
+# 🚀 Python + SQL Problem-Solving Practice  
 
 This repository contains my daily problem-solving practice in **Python**, focused on strengthening logic building, coding skills, and clear communication with the computer.  
 
