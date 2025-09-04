@@ -246,3 +246,35 @@ GROUP BY e.dept_id
 HAVING AVG(s.salary) > 65000;
 
 --------------------------------------------------------------------------------------------------------------------------
+--- Day 5 ---
+
+ ### Python ### 
+
+# Write a program to check if two strings are anagrams of each other. #  
+
+user = input("Enter first word: ")
+ana = input("Enter second word: ")
+
+# Normalize
+user = user.replace(" ", "").lower()
+ana = ana.replace(" ", "").lower()
+
+# Sort and compare
+if sorted(user) == sorted(ana):
+    print("Anagram")
+else:
+    print("Not anagram")
+
+### SQL ###
+
+# For each employee, check if their salary is greater than the average salary of their department.#
+SELECT e.emp_id, e.dept_id, s.salary
+FROM emply e
+JOIN slres s ON e.emp_id = s.emp_id
+WHERE s.salary > (
+    SELECT AVG(s2.salary)
+    FROM slres s2
+    JOIN emply e2 ON e2.emp_id = s2.emp_id
+    WHERE e2.dept_id = e.dept_id
+);
+--------------------------------------------------------------------------------------------------------------------------
