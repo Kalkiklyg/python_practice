@@ -4,10 +4,11 @@ This repository contains my daily problem-solving practice in **Python**, focuse
 
 The goal: Develop **problem-solving skills** first, then refine coding ability to prepare for **Data Analyst → AI/ML roles** in product-based MNCs.  
 
----
+--------------------------------------------------------------------------------------------------------------------------
+--- Day 1 ---
+### Python ###
 
-**Code:**
-```python
+
 def second_largest(nums):
     unique_nums = list(set(nums))  # remove duplicates
     unique_nums.sort(reverse=True)  # sort descending
@@ -61,7 +62,10 @@ SELECT *
 FROM salaries
 ORDER BY salary DESC;
 
-Day 2 – Problem Solving (Python + SQL)
+--------------------------------------------------------------------------------------------------------------------------
+### Day 2 ###
+
+---PYTHON---
 # slicing
 given_string = "example"
 rev_0 = given_string[::-1]
@@ -89,6 +93,9 @@ d = 0
 for i in str(digi):
     d += int(i)
 print("Sum of digits:", d)
+
+---- SQL ---
+
 
 SELECT e.emp_id, AVG(s.salary)
 FROM employees e 
