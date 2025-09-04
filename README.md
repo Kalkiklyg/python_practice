@@ -171,3 +171,78 @@ FROM emply
 GROUP BY dept_id;
 
 ----------------------------------------------------------------------------------------------------------------
+ ---Day 4 – Problem Solving---
+
+ ###Python Problems###
+
+ ---Find Duplicate Elements in a List---
+
+a = [1, 2, 3, 2, 4, 5, 1]
+seen = set()
+duplicate = set()
+
+for i in a:
+    if i in seen:
+        duplicate.add(i)
+    else:
+        seen.add(i)
+
+print(list(duplicate))
+
+---Merge two dictionaries. If a key exists in both, sum their values.---
+
+def sum_dict():
+    a = {'a': 1, 'b': 2}
+    b = {'b': 3, 'c': 4}
+    c = a.copy()
+    for i, k in b.items():
+        if i in c:
+            c[i] += k
+        else:
+            c[i] = k
+    return c
+
+print(sum_dict())  # Output: {'a': 1, 'b': 5, 'c': 4}
+
+---Count how many times each character occurs in a string.---
+s = "hello world"
+ds = {}
+
+for i in s:
+    if i in ds:
+        ds[i] += 1
+    else:
+        ds[i] = 1
+
+print(ds)  
+
+### SQL Problems ###
+
+---Employees with Salary > Average Salary of All Employees---
+
+SELECT e.emp_id, e.dept_id, s.salary
+FROM emply e
+JOIN slres s ON e.emp_id = s.emp_id
+WHERE s.salary > (SELECT AVG(salary) FROM slres);
+
+---Find the 3rd Highest Salary (Without LIMIT)---
+
+SELECT MAX(salary)
+FROM slres
+WHERE salary < (
+    SELECT MAX(salary)
+    FROM slres
+    WHERE salary < (
+        SELECT MAX(salary) FROM slres
+    )
+);
+
+---Departments with Avg Salary > 65,000---
+
+SELECT e.dept_id, AVG(s.salary) AS avg_salary
+FROM emply e
+JOIN slres s ON e.emp_id = s.emp_id
+GROUP BY e.dept_id
+HAVING AVG(s.salary) > 65000;
+
+--------------------------------------------------------------------------------------------------------------------------
