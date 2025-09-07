@@ -284,4 +284,139 @@ WHERE s.salary > (
     JOIN emply e2 ON e2.emp_id = s2.emp_id
     WHERE e2.dept_id = e.dept_id
 );
---------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+# day6_python.py
+# Day 6: Python problems
+# 1) First non-repeating character in a string
+# 2) Check if a list is a palindrome
+# Includes small tests / example runs at the bottom.
+
+def first_non_repeating(s: str):
+    """
+    Return the first non-repeating character in string s.
+    If none found, returns None.
+    Preserves original order.
+    """
+    if not s:
+        return None
+
+    # Optional normalization (uncomment if needed)
+    # s = s.replace(" ", "").lower()
+
+    counts = {}
+    for ch in s:
+        counts[ch] = counts.get(ch, 0) + 1
+
+    for ch in s:
+        if counts[ch] == 1:
+            return ch
+    return None
+
+
+def is_list_palindrome(lst):
+    """
+    Return True if the list is a palindrome, False otherwise.
+    Works for lists of numbers, strings, etc.
+    """
+    # direct and pythonic
+    return lst == lst[::-1]
+
+
+# -----------------------------
+# Example runs / quick tests
+# -----------------------------
+if __name__ == "__main__":
+    print("Day 6 Python tests")
+
+    # Test 1: first non-repeating character
+    tests = ["swiss", "hello", "aabb", ""]
+    for t in tests:
+        print(f"Input: {t!r} -> First non-repeating: {first_non_repeating(t)}")
+
+    # Test 2: list palindrome
+    lists = [
+        [1, 2, 3, 2, 1],
+        [1, 2, 3, 4],
+        ["a", "b", "b", "a"],
+        []
+    ]
+    for lst in lists:
+        print(f"List: {lst} -> Palindrome: {is_list_palindrome(lst)}")
+
+-- day6_sql.sql
+-- Day 6: SQL queries
+-- Tables assumed:
+--   emply(emp_id, name, dept_id)
+--   slres(emp_id, salary)
+
+--------------------------------------------------------------------------------
+-- Query 1A: Employees who earn the maximum salary in their department
+-- Approach: correlated subquery (returns every employee who has salary = dept max)
+--------------------------------------------------------------------------------
+SELECT e.emp_id,
+       e.name,
+       e.dept_id,
+       s.salary
+FROM emply e
+JOIN slres s ON e.emp_id = s.emp_id
+WHERE s.salary = (
+    SELECT MAX(s2.salary)
+    FROM slres s2
+    JOIN emply e2 ON e2.emp_id = s2.emp_id
+    WHERE e2.dept_id = e.dept_id
+);
+
+--------------------------------------------------------------------------------
+-- Query 1B: Same result using an aggregate (CTE) + JOIN — often clearer & efficient
+--------------------------------------------------------------------------------
+WITH dept_max AS (
+    SELECT e.dept_id,
+           MAX(s.salary) AS max_salary
+    FROM emply e
+    JOIN slres s ON e.emp_id = s.emp_id
+    GROUP BY e.dept_id
+)
+SELECT e.emp_id,
+       e.name,
+       e.dept_id,
+       s.salary
+FROM emply e
+JOIN slres s ON e.emp_id = s.emp_id
+JOIN dept_max d ON e.dept_id = d.dept_id
+                AND s.salary = d.max_salary;
+
+--------------------------------------------------------------------------------
+-- Query 2: Departments that have more than 3 employees
+--------------------------------------------------------------------------------
+SELECT dept_id,
+       COUNT(emp_id) AS employee_count
+FROM emply
+GROUP BY dept_id
+HAVING COUNT(emp_id) > 3;
+
+
+# Day 6 — Problem Solving (Python + SQL)
+
+## Python
+### 1) First non-repeating character
+- Approach: two-pass method (1) count frequencies using a dictionary, (2) iterate original string to keep order and return first with count 1.
+- File: `Python/day6_python.py`
+- Example: `"swiss"` -> `w`
+
+### 2) Check if a list is palindrome
+- Approach: compare list with its reversed version using slicing.
+- Example: `[1,2,3,2,1]` -> `True`
+
+## SQL
+### 1) Employees with maximum salary per department
+- Two approaches provided:
+  - Correlated subquery (row-level comparison)
+  - Aggregate (`WITH` / CTE) + JOIN (clearer for production)
+
+### 2) Departments with more than 3 employees
+- Use `GROUP BY dept_id` and `HAVING COUNT(*) > 3`
+
+## Learnings / Notes
+- Strengthen: correlated subqueries and CTE patterns — both are important in interviews.
+- Python: practice dictionary patterns and list slicing to reduce small syntax slips.
+
