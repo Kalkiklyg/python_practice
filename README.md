@@ -419,4 +419,62 @@ HAVING COUNT(emp_id) > 3;
 ## Learnings / Notes
 - Strengthen: correlated subqueries and CTE patterns — both are important in interviews.
 - Python: practice dictionary patterns and list slicing to reduce small syntax slips.
+-------------------------------------------------------------------------------------------------------------------------------------------
+# 🚀 Day 7 – Python Problem Solving
 
+## 🐍 Problems
+
+### 1️⃣ Return List of Words from String
+**Initial Code**
+```python
+user_input = input("Enter a sentence: ")
+user_split = user_input.split()
+print(user_split)
+
+###2️⃣ Extract Uppercase Letters from a String
+user_input = input("Enter a word: ")
+upper_list = [ch for ch in user_input if ch.isupper()]
+print("Uppercase letters:", upper_list)
+
+###3️⃣ Calculate Percentage Marks
+def percentage(marks, max_marks=300):
+    return sum(marks) / max_marks * 100
+
+print("Percentage:", percentage([89, 93, 87]))
+
+###4️⃣ Remove All Lowercase Characters
+user_input = input("Enter a word: ")
+result = "".join([ch for ch in user_input if not ch.islower()])
+print("Without lowercase:", result)
+
+###5️⃣ Simple Calculator
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+op = input("Enter operation (+, -, *, /): ")
+
+if op == '+':
+    print("Result:", num1 + num2)
+elif op == '-':
+    print("Result:", num1 - num2)
+elif op == '*':
+    print("Result:", num1 * num2)
+elif op == '/':
+    if num2 != 0:
+        print("Result:", num1 / num2)
+    else:
+        print("Error: Division by zero")
+else:
+    print("Invalid operation")
+earnings from Day 7
+
+Strengths: Logic understanding is good (split, isupper, islower, percentage, calculator).
+
+Weaknesses noticed in initial attempts:
+
+Applied checks at wrong level (whole string vs char).
+
+Confused operator vs computed result.
+
+Missed edge cases (division by zero).
+
+Improvement: Wrapping code in functions, handling exceptions, writing Pythonic one-liners.
