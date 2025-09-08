@@ -478,3 +478,48 @@ Confused operator vs computed result.
 Missed edge cases (division by zero).
 
 Improvement: Wrapping code in functions, handling exceptions, writing Pythonic one-liners.
+-------------------------------------------------------------------------------------------------------------------------------------------
+# 🚀 Day 8 – Python Basics (int)
+
+## 🔢 Data Type: int (Integer)
+
+### ✅ Nature of int
+- Represents **whole numbers** (…,-3, -2, -1, 0, 1, 2, …).  
+- **Immutable** → once created, cannot be changed (new object is made if reassigned).  
+- Can grow **arbitrarily large** in Python (limited only by memory).  
+- Supports basic arithmetic operations: `+`, `-`, `*`, `//`, `%`, `**`.  
+- Common functions:  
+  - `abs(x)` → absolute value  
+  - `pow(x, y)` → power (`x^y`)  
+  - `divmod(a, b)` → (quotient, remainder)  
+  - `int(x)` → type conversion  
+
+---
+
+## 📝 Program: Area of a Rectangle
+A simple program using integers and multiplication, no loops or conditions.
+
+```python
+# Program: Calculate area of a rectangle
+
+length = int(input("Enter length: "))
+width = int(input("Enter width: "))
+
+area = length * width   # int multiplication
+
+print("The area of rectangle is:", area)
+
+\\
+Enter length: 5
+Enter width: 10
+The area of rectangle is: 50
+//
+
+✅ Learnings from Day 8
+
+Practiced basics of int and casting using int(input()).
+
+Understood immutability: changing length or width creates new values.
+
+Reinforced simple arithmetic operations without loops/conditions.
+-------------------------------------------------------------------------------------------------------------------------------------------
